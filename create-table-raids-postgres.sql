@@ -1,0 +1,41 @@
+/*
+{
+    "subscription": {
+        "id": "f1c2a387-161a-49f9-a165-0f21d7a4e1c4",
+        "type": "channel.raid",
+        "version": "1",
+        "status": "enabled",
+        "cost": 0,
+        "condition": {
+            "to_broadcaster_user_id": "1337"
+        },
+         "transport": {
+            "method": "webhook",
+            "callback": "https://example.com/webhooks/callback"
+        },
+        "created_at": "2019-11-16T10:11:12.123Z"
+    },
+    "event": {
+        "from_broadcaster_user_id": "1234",
+        "from_broadcaster_user_login": "cool_user",
+        "from_broadcaster_user_name": "Cool_User",
+        "to_broadcaster_user_id": "1337",
+        "to_broadcaster_user_login": "cooler_user",
+        "to_broadcaster_user_name": "Cooler_User",
+        "viewers": 9001
+    }
+}
+*/
+
+CREATE TABLE raids
+(
+    id SERIAL PRIMARY KEY,
+    created_at TIMESTAMP NOT NULL,
+    from_broadcaster_user_id VARCHAR(255),
+    from_broadcaster_user_login VARCHAR(255),
+    from_broadcaster_user_name VARCHAR(255),
+    to_broadcaster_user_id VARCHAR(255),
+    to_broadcaster_user_login VARCHAR(255),
+    to_broadcaster_user_name VARCHAR(255),
+    viewers INTEGER
+);
