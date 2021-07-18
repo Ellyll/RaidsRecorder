@@ -1,7 +1,8 @@
 <?php
 require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../get_config.php';
 
-$config = json_decode(file_get_contents(__DIR__ . "/../config.json"));
+$config = get_config();
 $twitch_client_id = $config->client_id;
 $twitch_client_secret = $config->client_secret;
 $twitch_scopes = '';

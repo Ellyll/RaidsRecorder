@@ -1,6 +1,7 @@
 <?php
 
 require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../get_config.php';
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
@@ -61,9 +62,8 @@ function insert_raid($log, $message_timestamp, $data, $db_connection) {
 
 }
 
-
-// Get data from config file
-$config = json_decode(file_get_contents(__DIR__ . "/../config.json"));
+// Get config
+$config = get_config();
 $webhook_secret = $config->webhook_secret;
 $db_connection = $config->db_connection;
 

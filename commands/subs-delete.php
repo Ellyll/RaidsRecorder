@@ -1,5 +1,6 @@
 <?php
 require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../get_config.php';
 
 if ( !isset($argv[1]) )
 {
