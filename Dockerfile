@@ -23,6 +23,8 @@ RUN apt-get update && apt-get install -y zip unzip libzip-dev \
     && docker-php-ext-configure zip --with-zip \
     && docker-php-ext-install -j$(nproc) zip
 
-COPY --from=build /app/vendor .
-COPY web .
-COPY commands .
+COPY --from=build /app/vendor vendor
+COPY web web
+COPY commands commands
+COPY get_config.php .
+RUN mkdir log && chown www-data:www-data log
