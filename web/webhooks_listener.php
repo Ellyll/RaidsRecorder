@@ -23,9 +23,15 @@ function verify_message($log, $headers, $body, $webhook_secret) {
 
     $hmac_message = $headers['Twitch-Eventsub-Message-Id'] . $headers['Twitch-Eventsub-Message-Timestamp'] . rtrim($body);
     $signature = hash_hmac('sha256',$hmac_message, $webhook_secret);
-    $expected_signature_header = 'sha256=' . $signature;
+    $actual_signature = 'sha256=' . $signature;
 
-    return ($headers['Twitch-Eventsub-Message-Signature'] == $expected_signature_header);
+    $exepcted_signature = $headers['Twitch-Eventsub-Message-Signature'];
+
+    $is_valid = $actual_signature == $exepcted_signature;
+
+    $log->info("verify_message: is_valid=$is_valid actual_sginature=$actual_signature expected_signature=$exepcted_signature");
+
+    return $is_valid;
 }
 
 function insert_raid($log, $message_timestamp, $data, $db_connection) {
