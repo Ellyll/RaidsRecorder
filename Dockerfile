@@ -28,3 +28,6 @@ COPY web web
 COPY commands commands
 COPY get_config.php .
 RUN mkdir log && chown www-data:www-data log
+
+# Create config from environment variables
+CMD  php /app/commands/create_config_from_env.php && apache2-foreground
